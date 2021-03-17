@@ -1,0 +1,61 @@
+package kr.hs.dgsw.java.c2;
+
+import java.util.Scanner;
+
+public class MinMaxAvg {
+	private int array[];
+	private int min = 0;
+	private int max = 0;
+	private int avg = 0;
+	
+	public void add(int value) {	
+		int i = 0;
+		array[i] += value;
+		i++;
+	}
+	
+	public void min() {
+		min = array[0];
+		for (int i = 1; i < array.length; i++) {
+			if(min > array[i]) min = array[i];
+		}
+		System.out.println("최솟값 : " + min);
+	}
+	
+	public void max() {
+		max = array[0];
+		for (int i = 1; i < array.length; i++) {
+			if(max < array[i]) max = array[i];
+		}
+		System.out.println("최댓값 : " + max);
+	}
+	
+	public void avg() {
+		for (int i = 0; i < array.length; i++) {
+			avg += array[i];
+		}
+		avg /= array.length;
+		
+		System.out.println("평균값 : " + avg);
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		MinMaxAvg minMaxAvg = new MinMaxAvg();
+		
+		while (true) {
+			System.out.println("정수를 입력하세요");
+			int value = scanner.nextInt();
+			
+			if(-9999 == value) break;
+			else minMaxAvg.add(value);
+		}
+		minMaxAvg.min();
+		minMaxAvg.max();
+		minMaxAvg.avg();
+		
+		scanner.close();
+	}
+}
