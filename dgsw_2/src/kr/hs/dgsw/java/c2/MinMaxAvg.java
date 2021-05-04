@@ -1,0 +1,144 @@
+package kr.hs.dgsw.java.c2;
+
+import java.util.Scanner;
+
+public class MinMaxAvg {
+//	private int array[] = new int[3];
+//	
+//	public void add(int value) {	
+//		int i = 0;
+//		array[i] = value;
+//		i++;
+//	}
+//	
+//	public void min() {
+//		int min = array[0];
+//		for (int i = 1; i < array.length; i++) {
+//			if (min > array[i]) min = array[i];
+//		}
+//		System.out.println("최솟값 : " + min);
+//	}
+//	
+//	public void max() {
+//		int max = array[0];
+//		for (int i = 1; i < array.length; i++) {
+//			if(max < array[i]) max = array[i];
+//		}
+//		System.out.println("최댓값 : " + max);
+//	}
+//	
+//	private int sum() {
+//		int sum = 0;
+//		
+//		for (int value : array) {
+//			sum += value;
+//		}
+//		return sum;
+//	}
+//	
+//	public void avg() {
+//		System.out.println("평균값 : "+ (double)sum() / (double)array.length); ;
+//	}
+//	
+//	public static void main(String[] args) {
+//		
+//		Scanner scanner = new Scanner(System.in);
+//		
+//		MinMaxAvg minMaxAvg = new MinMaxAvg();
+//		
+//		while (true) {
+//			System.out.println("정수를 입력하세요");
+//			int value = scanner.nextInt();
+//			
+//			if(-9999 == value) break;
+//			else minMaxAvg.add(value);
+//		}
+//		minMaxAvg.min();
+//		minMaxAvg.max();
+//		minMaxAvg.avg();
+//		
+//		scanner.close();
+//	}
+	
+private static final int SIZE = 5;
+	
+	private int[] values;
+	
+	private int index;
+	
+	public MinMaxAvg() {
+		values = new int[SIZE];
+		index = 0;
+	}
+	
+	public void setValue(int value) {
+		if (index >= SIZE)
+		{
+			throw new RuntimeException("크기 초과");
+		}
+		
+		values[index] = value;
+		index++;
+	}
+	
+	public int getMinimum() {
+		int min = values[0];
+		
+		for (int i = 1 ; i < SIZE ; i++) {
+			if (min > values[i]) {
+				min = values[i];
+			}
+		}
+		
+		return min;
+	}
+	
+	public int getMaximum() {
+		int max = values[0];
+		
+		for (int i = 1 ; i < SIZE ; i++) {
+			if (max < values[i]) {
+				max = values[i];
+			}
+		}
+		
+		return max;
+	}
+	
+	private int getSum() {
+		int sum = 0;
+
+		for (int value : values)
+		{
+			sum += value;
+		}
+		
+		return sum;
+	}
+
+	public double getAverage() {
+		return (double)getSum() / (double)SIZE;
+	}
+	
+	public static void main(String[] args) {
+		MinMaxAvg minMaxAvg = new MinMaxAvg();
+		Scanner scanner = new Scanner(System.in);
+		
+		for (int i = 0 ; i < SIZE ; i++)
+		{
+			System.out.println("정수를 입력하세요.");
+			int value = scanner.nextInt();
+			
+			minMaxAvg.setValue(value);
+		}
+		
+		String result = 
+				String.format("최소값 : %d  최대값 : %d  평균값 : %.2f", 
+						minMaxAvg.getMinimum(),
+						minMaxAvg.getMaximum(),
+						minMaxAvg.getAverage());
+		System.out.println(result);
+		
+		scanner.close();
+	}
+}
